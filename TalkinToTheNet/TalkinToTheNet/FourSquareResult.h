@@ -11,5 +11,8 @@
 @interface FourSquareResult : NSObject
 
 @property (nonatomic) NSString *storeName;
+@property (nonatomic) NSString *phoneNumber;
+@property (nonatomic) NSString *address;
+@property (nonatomic) NSString *logLatCoordinate;
 
 @end

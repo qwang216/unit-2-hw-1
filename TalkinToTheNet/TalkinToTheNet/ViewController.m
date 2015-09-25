@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "APIManager.h"
 #import "FourSquareResult.h"
+#import "FourSquareTableViewCell.h"
 
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate >
@@ -32,36 +33,41 @@
 }
 
 -(void)testingAPI{
-    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?query=sushi&near=ny&client_id=1WWGZGKEBJ1VLGUMAWLQEPROGSZ4U5ILXLXMFWHQRAROVUUH&client_secret=4APXHT2QAOWSGSOVUY3040XM5UBJTWJ2PNLK2AQ1L34GSXBO&v=20150925"];
+
+}
+
+
+-(void)makeAPIRequestWithSearchTerms: (NSString *)searchTerm callBackBlock: (void (^)())block {
+    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?query=%@&near=ny&client_id=1WWGZGKEBJ1VLGUMAWLQEPROGSZ4U5ILXLXMFWHQRAROVUUH&client_secret=4APXHT2QAOWSGSOVUY3040XM5UBJTWJ2PNLK2AQ1L34GSXBO&v=20150925", searchTerm];
     NSString *encodedString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:encodedString];
     [APIManager getRequestWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (data != nil) {
+            self.searchResult = [[NSMutableArray alloc] init];
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             NSArray *results = json[@"response"][@"venues"];
             
-            
-            NSLog(@"%@",json);
+            for (NSDictionary *result in results) {
+                FourSquareResult *currentResult = [[FourSquareResult alloc] init];
+                
+                NSString *storeName = [result objectForKey:@"name"];
+                currentResult.storeName = storeName;
+                
+                NSString *number = [[result objectForKey:@"contact"] objectForKey:@"formattedPhone"];
+                currentResult.phoneNumber = number;
+                
+                NSString *street = [[result objectForKey:@"location"] objectForKey:@"address"];
+                NSString *city = [[result objectForKey:@"location"] objectForKey:@"city"];
+                NSString *state = [[result objectForKey:@"location"] objectForKey:@"state"];
+                NSString *postalCode = [[result objectForKey:@"location"] objectForKey:@"postalCode"];
+                currentResult.address = [NSString stringWithFormat:@"%@ %@, %@ %@", street, city, state, postalCode];
+                
+                [self.searchResult addObject:currentResult];
+            }
+            block();
         }
     }];
-    
 }
-
-
-//-(void)makeAPIRequestWithSearchTerms: (NSString *)searchTerm callBackBlock: (void (^)())block {
-//    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?query=%@&near=ny&client_id=1WWGZGKEBJ1VLGUMAWLQEPROGSZ4U5ILXLXMFWHQRAROVUUH&client_secret=4APXHT2QAOWSGSOVUY3040XM5UBJTWJ2PNLK2AQ1L34GSXBO&v=20150925", searchTerm];
-//    NSString *encodedString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-//    NSURL *url = [NSURL URLWithString:encodedString];
-//    
-//    [APIManager getRequestWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//       
-//        if (data != nil) {
-//            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//            NSArray *results = json[@"response"][@"venues"];
-//            
-//        }
-//    }];
-//}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -73,11 +79,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
-    FourSquareResult * currentResult = self.searchResult[indexPath.row];
-    cell.textLabel.text = currentResult.storeName;
+    FourSquareTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    FourSquareResult *result = self.searchResult[indexPath.row];
     
+    cell.storeNameLabel.text = result.storeName;
+    cell.phoneNumberLabel.text = result.phoneNumber;
+    cell.addressLabel.text = result.address;
     return cell;
 }
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [self.view endEditing:YES];
+    NSString *searchTerm = self.searchTextField.text;
+    
+    [self makeAPIRequestWithSearchTerms:searchTerm callBackBlock:^{
+        [self.tableView reloadData];
+    }];
+    return YES;
+}
+
+
+
 
 @end
