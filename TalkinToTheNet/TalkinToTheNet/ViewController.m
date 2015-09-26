@@ -48,19 +48,29 @@
             NSArray *results = json[@"response"][@"venues"];
             
             for (NSDictionary *result in results) {
+                
                 FourSquareResult *currentResult = [[FourSquareResult alloc] init];
                 
+                // storing the name
                 NSString *storeName = [result objectForKey:@"name"];
                 currentResult.storeName = storeName;
                 
+                // storing phone number
                 NSString *number = [[result objectForKey:@"contact"] objectForKey:@"formattedPhone"];
                 currentResult.phoneNumber = number;
                 
+                // storing the address
                 NSString *street = [[result objectForKey:@"location"] objectForKey:@"address"];
                 NSString *city = [[result objectForKey:@"location"] objectForKey:@"city"];
                 NSString *state = [[result objectForKey:@"location"] objectForKey:@"state"];
                 NSString *postalCode = [[result objectForKey:@"location"] objectForKey:@"postalCode"];
                 currentResult.address = [NSString stringWithFormat:@"%@ %@, %@ %@", street, city, state, postalCode];
+                
+                // storing geo location
+                NSString *lng = [[result objectForKey:@"location"] objectForKey:@"lng"];
+                currentResult.lngCoordinate = lng;
+                NSString *lat = [[result objectForKey:@"location"] objectForKey:@"lat"];
+                currentResult.latCoordinate = lat;
                 
                 [self.searchResult addObject:currentResult];
             }

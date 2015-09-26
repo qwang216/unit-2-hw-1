@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -101,6 +102,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="585" y="187"/>
+        </scene>
+        <!--Instagram Post View Controller-->
+        <scene sceneID="ymw-NX-8Ja">
+            <objects>
+                <viewController id="UhL-Vq-JXt" customClass="InstagramPostViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LLQ-AV-eVr"/>
+                        <viewControllerLayoutGuide type="bottom" id="dff-hZ-nCJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lhc-K4-bfe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9G2-ly-v0e">
+                                <rect key="frame" x="255" y="64" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-tG-6F4">
+                                <rect key="frame" x="91" y="114" width="418" height="418"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gbd-tG-6F4" secondAttribute="height" multiplier="1:1" id="e6b-gN-6LU"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Jh-Tz-yBX">
+                                <rect key="frame" x="277" y="392" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gbd-tG-6F4" secondAttribute="trailing" constant="142" id="5Xv-4a-03V"/>
+                            <constraint firstItem="9G2-ly-v0e" firstAttribute="centerX" secondItem="Lhc-K4-bfe" secondAttribute="centerX" id="6nz-pp-qPu"/>
+                            <constraint firstItem="gbd-tG-6F4" firstAttribute="top" secondItem="9G2-ly-v0e" secondAttribute="bottom" constant="29" id="N0q-sp-5qb"/>
+                            <constraint firstItem="gbd-tG-6F4" firstAttribute="leading" secondItem="Lhc-K4-bfe" secondAttribute="leading" constant="40" id="Oaf-cf-5Uu"/>
+                            <constraint firstItem="9G2-ly-v0e" firstAttribute="top" secondItem="LLQ-AV-eVr" secondAttribute="bottom" constant="44" id="Xgi-To-rhh"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgW-c7-4Iw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1251" y="187"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yS5-6t-rmC">

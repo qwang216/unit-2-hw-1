@@ -13,6 +13,7 @@
 @property (nonatomic) NSString *storeName;
 @property (nonatomic) NSString *phoneNumber;
 @property (nonatomic) NSString *address;
-@property (nonatomic) NSString *logLatCoordinate;
+@property (nonatomic) NSString *lngCoordinate;
+@property (nonatomic) NSString *latCoordinate;
 
 @end
