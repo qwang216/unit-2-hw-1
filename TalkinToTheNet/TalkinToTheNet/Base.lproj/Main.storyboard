@@ -23,31 +23,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dlZ-AH-G2x">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dlZ-AH-G2x">
                                 <rect key="frame" x="0.0" y="112" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellIdentifier" rowHeight="120" id="8Ou-th-QC6" customClass="FourSquareTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellIdentifier" rowHeight="81" id="8Ou-th-QC6" customClass="FourSquareTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Ou-th-QC6" id="pcZ-Sv-mx6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfR-zU-zPe">
-                                                    <rect key="frame" x="25" y="8" width="91" height="21"/>
+                                                    <rect key="frame" x="25" y="1" width="91" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jed-lY-Ern">
-                                                    <rect key="frame" x="25" y="49" width="115" height="21"/>
+                                                    <rect key="frame" x="25" y="27" width="115" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCY-SP-nQ5">
-                                                    <rect key="frame" x="25" y="84" width="63" height="21"/>
+                                                    <rect key="frame" x="25" y="53" width="63" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -59,8 +59,18 @@
                                                 <constraint firstItem="bfR-zU-zPe" firstAttribute="top" secondItem="pcZ-Sv-mx6" secondAttribute="top" constant="8" id="Av1-mb-pr9"/>
                                                 <constraint firstItem="jed-lY-Ern" firstAttribute="centerY" secondItem="pcZ-Sv-mx6" secondAttribute="centerY" id="UI5-WY-GRv"/>
                                                 <constraint firstItem="VCY-SP-nQ5" firstAttribute="leading" secondItem="pcZ-Sv-mx6" secondAttribute="leading" constant="25" id="VYI-mz-1fa"/>
-                                                <constraint firstItem="VCY-SP-nQ5" firstAttribute="top" secondItem="jed-lY-Ern" secondAttribute="bottom" constant="14" id="xgT-pR-Cpn"/>
+                                                <constraint firstItem="jed-lY-Ern" firstAttribute="top" secondItem="bfR-zU-zPe" secondAttribute="bottom" constant="5" id="gWw-IQ-Q02"/>
+                                                <constraint firstItem="jed-lY-Ern" firstAttribute="centerY" secondItem="pcZ-Sv-mx6" secondAttribute="centerY" constant="-3" id="ny2-CA-A5o"/>
+                                                <constraint firstItem="jed-lY-Ern" firstAttribute="top" secondItem="bfR-zU-zPe" secondAttribute="bottom" constant="5" id="tZG-NQ-Xvq"/>
+                                                <constraint firstItem="VCY-SP-nQ5" firstAttribute="top" secondItem="jed-lY-Ern" secondAttribute="bottom" constant="5" id="xgT-pR-Cpn"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Av1-mb-pr9"/>
+                                                    <exclude reference="UI5-WY-GRv"/>
+                                                    <exclude reference="tZG-NQ-Xvq"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addressLabel" destination="VCY-SP-nQ5" id="lgY-r6-X6E"/>
