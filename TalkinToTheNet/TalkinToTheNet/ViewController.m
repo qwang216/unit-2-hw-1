@@ -10,6 +10,8 @@
 #import "APIManager.h"
 #import "FourSquareResult.h"
 #import "FourSquareTableViewCell.h"
+#import "WeatherViewController.h"
+#import "WeatherSearchResult.h"
 
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate >
@@ -28,13 +30,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self testingAPI];
 
 }
 
--(void)testingAPI{
-
-}
 
 
 -(void)makeAPIRequestWithSearchTerms: (NSString *)searchTerm callBackBlock: (void (^)())block {
@@ -66,11 +64,12 @@
                 NSString *postalCode = [[result objectForKey:@"location"] objectForKey:@"postalCode"];
                 currentResult.address = [NSString stringWithFormat:@"%@ %@, %@ %@", street, city, state, postalCode];
                 
+                WeatherSearchResult *location = [[WeatherSearchResult alloc] init];
                 // storing geo location
                 NSString *lng = [[result objectForKey:@"location"] objectForKey:@"lng"];
-                currentResult.lngCoordinate = lng;
+                location.lngCoordinate = lng;
                 NSString *lat = [[result objectForKey:@"location"] objectForKey:@"lat"];
-                currentResult.latCoordinate = lat;
+                location.latCoordinate = lat;
                 
                 [self.searchResult addObject:currentResult];
             }
@@ -97,6 +96,7 @@
     cell.addressLabel.text = result.address;
     return cell;
 }
+
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {

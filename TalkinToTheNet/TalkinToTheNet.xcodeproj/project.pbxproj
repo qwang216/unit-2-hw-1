@@ -13,10 +13,11 @@
 		8D7DCD541BAF859400A92AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD521BAF859400A92AD2 /* Main.storyboard */; };
 		8D7DCD561BAF859400A92AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD551BAF859400A92AD2 /* Assets.xcassets */; };
 		8D7DCD591BAF859400A92AD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */; };
+		D40A63D71BBF518700DC0788 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A63D61BBF518700DC0788 /* WeatherViewController.m */; settings = {ASSET_TAGS = (); }; };
+		D40A63DA1BBF51CC00DC0788 /* WeatherSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A63D91BBF51CC00DC0788 /* WeatherSearchResult.m */; settings = {ASSET_TAGS = (); }; };
 		D42E0DFA1BB5A2BB00135642 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E0DF91BB5A2BB00135642 /* APIManager.m */; settings = {ASSET_TAGS = (); }; };
 		D42E0DFD1BB5FED700135642 /* FourSquareResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E0DFC1BB5FED700135642 /* FourSquareResult.m */; settings = {ASSET_TAGS = (); }; };
 		D42E0E001BB610BD00135642 /* FourSquareTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E0DFF1BB610BD00135642 /* FourSquareTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		D42E0E031BB620E900135642 /* InstagramPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E0E021BB620E900135642 /* InstagramPostViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,14 +31,16 @@
 		8D7DCD551BAF859400A92AD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D7DCD581BAF859400A92AD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D7DCD5A1BAF859400A92AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D40A63D51BBF518700DC0788 /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		D40A63D61BBF518700DC0788 /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		D40A63D81BBF51CC00DC0788 /* WeatherSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherSearchResult.h; sourceTree = "<group>"; };
+		D40A63D91BBF51CC00DC0788 /* WeatherSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherSearchResult.m; sourceTree = "<group>"; };
 		D42E0DF81BB5A2BB00135642 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		D42E0DF91BB5A2BB00135642 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		D42E0DFB1BB5FED600135642 /* FourSquareResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourSquareResult.h; sourceTree = "<group>"; };
 		D42E0DFC1BB5FED700135642 /* FourSquareResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourSquareResult.m; sourceTree = "<group>"; };
 		D42E0DFE1BB610BD00135642 /* FourSquareTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourSquareTableViewCell.h; sourceTree = "<group>"; };
 		D42E0DFF1BB610BD00135642 /* FourSquareTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourSquareTableViewCell.m; sourceTree = "<group>"; };
-		D42E0E011BB620E900135642 /* InstagramPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramPostViewController.h; sourceTree = "<group>"; };
-		D42E0E021BB620E900135642 /* InstagramPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramPostViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +83,10 @@
 				D42E0DFC1BB5FED700135642 /* FourSquareResult.m */,
 				D42E0DFE1BB610BD00135642 /* FourSquareTableViewCell.h */,
 				D42E0DFF1BB610BD00135642 /* FourSquareTableViewCell.m */,
-				D42E0E011BB620E900135642 /* InstagramPostViewController.h */,
-				D42E0E021BB620E900135642 /* InstagramPostViewController.m */,
+				D40A63D81BBF51CC00DC0788 /* WeatherSearchResult.h */,
+				D40A63D91BBF51CC00DC0788 /* WeatherSearchResult.m */,
+				D40A63D51BBF518700DC0788 /* WeatherViewController.h */,
+				D40A63D61BBF518700DC0788 /* WeatherViewController.m */,
 				8D7DCD521BAF859400A92AD2 /* Main.storyboard */,
 				8D7DCD551BAF859400A92AD2 /* Assets.xcassets */,
 				8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */,
@@ -171,11 +176,12 @@
 			files = (
 				D42E0E001BB610BD00135642 /* FourSquareTableViewCell.m in Sources */,
 				D42E0DFA1BB5A2BB00135642 /* APIManager.m in Sources */,
+				D40A63D71BBF518700DC0788 /* WeatherViewController.m in Sources */,
 				8D7DCD511BAF859400A92AD2 /* ViewController.m in Sources */,
 				D42E0DFD1BB5FED700135642 /* FourSquareResult.m in Sources */,
+				D40A63DA1BBF51CC00DC0788 /* WeatherSearchResult.m in Sources */,
 				8D7DCD4E1BAF859400A92AD2 /* AppDelegate.m in Sources */,
 				8D7DCD4B1BAF859400A92AD2 /* main.m in Sources */,
-				D42E0E031BB620E900135642 /* InstagramPostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
