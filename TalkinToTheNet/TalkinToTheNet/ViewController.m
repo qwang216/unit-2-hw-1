@@ -64,12 +64,11 @@
                 NSString *postalCode = [[result objectForKey:@"location"] objectForKey:@"postalCode"];
                 currentResult.address = [NSString stringWithFormat:@"%@ %@, %@ %@", street, city, state, postalCode];
                 
-                WeatherSearchResult *location = [[WeatherSearchResult alloc] init];
                 // storing geo location
                 NSString *lng = [[result objectForKey:@"location"] objectForKey:@"lng"];
-                location.lngCoordinate = lng;
+                currentResult.lngCoordinate = lng;
                 NSString *lat = [[result objectForKey:@"location"] objectForKey:@"lat"];
-                location.latCoordinate = lat;
+                currentResult.latCoordinate = lat;
                 
                 [self.searchResult addObject:currentResult];
             }
@@ -97,6 +96,23 @@
     return cell;
 }
 
+/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    WeatherViewController *viewController = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"WeatherVCID"];
+    viewController.coordinates = [self.searchResult objectAtIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+    
+}
+*/
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indextPath = [self.tableView indexPathForSelectedRow];
+    FourSquareResult *location = [self.searchResult objectAtIndex:indextPath.row];
+    WeatherViewController *viewController = segue.destinationViewController;
+    viewController.coordinates = location;
+
+}
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {

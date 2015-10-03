@@ -33,52 +33,46 @@
     [self displayTheResult];
 }
 
+-(double)converKtoF: (double)kelvin {
+    double fahrenheit = ((kelvin - 273.15)* 1.80) + 32.00;
+    return fahrenheit;
+}
+
 -(void)makeAPIRequestWithLng: (NSString *)lng
                       andLat: (NSString *)lat
                callBackBlock: (void (^)())block {
-    NSString *urlString = [NSString stringWithFormat:@"https://http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@",lat, lng];
+    NSString *urlString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%@&lon=%@",lat, lng];
     NSString *encodedString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:encodedString];
     
     [APIManager getRequestWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (data != nil) {
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            self.searchResult = [[NSMutableArray alloc] init];
             
-            for (NSDictionary *result in json) {
-                
-                WeatherSearchResult *currentResult = [[WeatherSearchResult alloc] init];
-                
-                
-                NSString *description = [[[result objectForKey:@"weather"] objectAtIndex:0] objectForKey:@"description"];
-                currentResult.weatherDescription = description;
-                self.descriptionLabel.text = self.descriptionString;
-                
-                NSInteger temperature = [[[result objectForKey:@"main"] objectForKey:@"temp"] integerValue];
-                currentResult.currentTemp = temperature;
-                
-                NSInteger maxTemperature = [[[result objectForKey:@"main"] objectForKey:@"temp_max"] integerValue];
-                currentResult.maxTemp = maxTemperature;
-                
-                NSInteger minTemperatuer = [[[result objectForKey:@"main"] objectForKey:@"temp_min"] integerValue];
-                currentResult.minTemp = minTemperatuer;
-                
-                [self.searchResult addObject:currentResult];
-            }
+            double currentTemp = [self converKtoF:[[[json objectForKey:@"main"] objectForKey:@"temp"]integerValue]];
+            double maxTemp = [self converKtoF:[[[json objectForKey:@"main"] objectForKey:@"temp_max"]integerValue]];
+            double minTemp = [self converKtoF:[[[json objectForKey:@"main"] objectForKey:@"temp_min"]integerValue]];
+            
+            self.descriptionString = [[[json objectForKey:@"weather"] objectAtIndex:0] objectForKey:@"description"];
+            self.currentTempString = [NSString stringWithFormat:@"Current Temperture: %.02f", currentTemp];
+            self.maxTempString = [NSString stringWithFormat:@"Highest Temperture: %0.2f", maxTemp];
+            self.minTempString = [NSString stringWithFormat:@"Lowest Temperture: %0.2f", minTemp];
+            
             block();
         }
     }];
 }
 
 -(void)displayTheResult {
-    FourSquareResult *coordinates = [[FourSquareResult alloc] init];
-    NSString *resultLng = coordinates.lngCoordinate;
-    NSString *resultLat = coordinates.latCoordinate;
-    [self makeAPIRequestWithLng:resultLng andLat:resultLat callBackBlock:^{
-        WeatherSearchResult *result = [[WeatherSearchResult alloc] init];
-        self.currentTempLabel.text = [NSString stringWithFormat:@"%ld", result.currentTemp];
-        self.maxTempLabel.text = [NSString stringWithFormat:@"%ld", result.maxTemp];
-        self.minTempLabel.text = [NSString stringWithFormat:@"%ld", result.minTemp];
-        self.descriptionLabel.text = result.description;
+    NSString *resultlng = self.coordinates.lngCoordinate;
+    NSString *resultlat = self.coordinates.latCoordinate;
+    [self makeAPIRequestWithLng:resultlng andLat:resultlat callBackBlock:^{
+        
+        self.currentTempLabel.text = _currentTempString;
+        self.maxTempLabel.text = _maxTempString;
+        self.minTempLabel.text = _minTempString;
+        self.descriptionLabel.text = _descriptionString;
     }];
     
 }

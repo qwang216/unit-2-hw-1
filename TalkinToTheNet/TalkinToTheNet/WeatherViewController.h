@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FourSquareResult.h"
 
 @interface WeatherViewController : UIViewController
+@property (nonatomic) FourSquareResult *coordinates;
 
 @end
